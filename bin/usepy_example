@@ -1,0 +1,16 @@
+#!/usr/lib/python -tt
+
+"""A rather temporary executable (until web interface arrives)."""
+
+from usetool.cpu import CpuMetrics
+
+if __name__ == '__main__':
+    print("""NOTICE: This is a temporary executable for testing only and will be deleted in Version 0.2.""")
+    print("This is not the real thing!")
+    print("------------------------------------------------------------------")
+    cpum = CpuMetrics()
+    print("CPU Utilisation: " + str(cpum.get_cpu_util()) + "%")
+    print("CPU Saturation: " + str(cpum.get_cpu_satur()))
+
+    print(" Check the source code to see how other metrics are computed! More to come.")
+    print("-----------------------------------------------------------------")
