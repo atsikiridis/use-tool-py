@@ -5,8 +5,6 @@ from use.base import Metrics
 from linux_metrics import disk_busy
 
 from abc import ABCMeta
-from collections import namedtuple
-
 
 class StorageIOMetrics(Metrics):
     """Abstract base class for Storage IO  metrics. All implementations
@@ -25,8 +23,7 @@ class LinuxStorageMetrics(StorageIOMetrics):
 
     @property
     def utilization(self):  # per device
-        io_util_tuple = namedtuple('io_util', self._partitions)
-        return io_util_tuple(disk_busy(ptn) for ptn in self._partitions)
+        return (disk_busy(ptn) for ptn in self._partitions)
 
     @property
     def saturation(self):
@@ -34,11 +31,12 @@ class LinuxStorageMetrics(StorageIOMetrics):
             /sys/block/sda/stat."""
         wait_queue_lengths = list()
         with open("/proc/diskstats") as diskstats_file:
-            line = diskstats_file.readline().split()
-            if line[2] in self._partitions:
-                wait_queue_lengths.append(line[11])
-        return namedtuple('io_satur', self._partitions)(wait_queue_lengths)
+            for line in diskstats_file:
+                tokens = line.split()
+                if tokens[2] in self._partitions:
+                    wait_queue_lengths.append((tokens[2], tokens[11]))
+        return tuple(wait_queue_lengths)
 
     @property
-    def get_storio_errors(self):
+    def errors(self):
         raise NotImplementedError
