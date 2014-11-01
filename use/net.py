@@ -1,7 +1,9 @@
 """Module containg metrics for Network Interfaces. """
 
-from abc import ABCMeta, abstractmethod
-from use.sys_util import Metric, SystemUtilities
+from psutil import net_io_counters
+
+from abc import ABCMeta, abstractproperty
+from collections import namedtuple
 
 class NetworkMetrics(object):
     """Abstract base class for Network metrics. All implementations
@@ -9,46 +11,47 @@ class NetworkMetrics(object):
 
     __metaclass__ = ABCMeta
 
+    @abstractproperty
+    def utilization_per_nic(self):
+        return
 
-    def __new__(cls):
-        return SystemUtilities.get_metric_obj(cls)
-
-    @abstractmethod
-    def get_net_util(self):
-        """Abstract method. Should be implemented by subclasses
-            to obtain Network Utilisation metrics. """
-        return NotImplemented
-
-    @abstractmethod
-    def get_net_satur(self):
-        """Abstract method. Should be implemented by subclasses
-            to obtain Network Saturation metrics. """
-        return NotImplemented
-
-    @abstractmethod
-    def get_net_errors(self):
-        """Abstract method. Should be implemented by subclasses
-            to obtain Network Errors metrics."""
-        return NotImplemented
-
-@Metric('Linux')
 class LinuxNetworkMetrics(NetworkMetrics):
     """Network metrics for Linux Systems are obtained here."""
 
-    def get_net_util(self):
+    def __init__(self):
+        self._util_tuple = namedtuple('netutil',
+                                         ['bytes_recv', 'bytes_sent'])
+
+    @property
+    def utilization(self):
         """ Network utilization for Linux is based on /proc/net/dev.
             Returns a dictionary in the form of :
 
             'interface':[Rbytes,Tbytes] ."""
 
-        return self._get_net_metric("bytes")
+        counters = net_io_counters()
+        return self._util_tuple(counters.bytes_recv, counters.bytes_sent) # TODO Max bandwidth ?
 
-    def get_net_satur(self):
-        """Network saturation for Linux is based on /proc/net/dev."""
+    @property
+    def utilization_per_nic(self):
+        all_counters_pernic = net_io_counters(pernic=True)
+
+        counters_per_nic = dict()
+        for nic in all_counters_pernic.keys():
+            recv_sent = self._util_tuple(all_counters_pernic[nic].bytes_recv,
+                                         all_counters_pernic[nic].bytes_sent)
+            counters_per_nic[nic] = recv_sent
+        return counters_per_nic
+
+
+    @property
+    def saturation(self):
+        """Network saturation for Linux is based on /proc/net/dev. drop?"""
 
         return self._get_net_metric("drop")
 
-    def get_net_errors(self):
+    @property
+    def errors(self):
         """Network errors for Linux."""
         drop_metric =  LinuxNetworkMetrics._get_net_metric("drop")
         errors_metric =  LinuxNetworkMetrics._get_net_metric("errs")
