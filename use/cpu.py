@@ -35,7 +35,7 @@ class LinuxCpuMetrics(CpuMetrics):
 
            Note:  Linux load averages include tasks in the uninterruptable
            state (usually I/O)."""
-        return getloadavg()
+        return getloadavg()  # TODO Support scheduler latency (perf-sched ?)
 
     @property
     def errors(self):

@@ -17,7 +17,7 @@ class LinuxMemoryMetrics(Metrics):
 
     @property
     def saturation(self):
-        return swap_memory().percent
+        return swap_memory().percent  # TODO Thread swapping
 
     @property
     def errors(self):

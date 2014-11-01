@@ -10,5 +10,6 @@ setup(name="use",
                         (Utilization, Saturation, Errors).""",
       author="Artem Tsikiridis",
       author_email="atsik@dmst.aueb.gr",
-      packages=["use"]
+      packages=["use"],
+      requires=["psutil"]
       )
