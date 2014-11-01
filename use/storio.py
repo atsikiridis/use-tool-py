@@ -1,7 +1,7 @@
 """Module containing classes for Storage IO-related Metrics."""
 
 from abc import ABCMeta, abstractmethod
-from usetool.sys_util import Metric, SystemUtilities
+from use.sys_util import Metric, SystemUtilities
 import time
 
 class StorageIOMetrics(object):

@@ -1,7 +1,7 @@
 """ Module containing classes for Memory Capacity MEtrics."""
 
 from abc import ABCMeta, abstractmethod
-from usetool.sys_util import Metric, SystemUtilities
+from use.sys_util import Metric, SystemUtilities
 import subprocess
 
 class MemoryMetrics(object):

@@ -1,7 +1,7 @@
 """Module containing metrics relevant to Storage Capacity."""
 
 from abc import ABCMeta, abstractmethod
-from usetool.sys_util import Metric, SystemUtilities
+from use.sys_util import Metric, SystemUtilities
 
 class StorageCapMetrics(object):
     """Abstract base class for Storage capacity metrics. All implementations

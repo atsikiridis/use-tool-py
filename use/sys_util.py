@@ -2,8 +2,8 @@
 
 import platform
 
-SYSMAP = {} #A dictionary with global scope containing mappings for platforms/
-            #e.g: 'Windows': windows8, 'Linux': archlinuxclass
+SYSMAP = {}  # A dictionary with global scope containing mappings.
+             # e.g: 'Windows': windows8, 'Linux': archlinuxclass
 
 class Metric(object):
     """ A decorator class that allows a Metric class to be consistent with
@@ -29,6 +29,7 @@ class Metric(object):
                                   Example decorator annotation is:
                                   @Metric('Linux')""")
         self.system = system
+
     def __call__(self, cls):
         SYSMAP[self.system] = cls
         return cls

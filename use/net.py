@@ -1,7 +1,7 @@
 """Module containg metrics for Network Interfaces. """
 
 from abc import ABCMeta, abstractmethod
-from usetool.sys_util import Metric, SystemUtilities
+from use.sys_util import Metric, SystemUtilities
 
 class NetworkMetrics(object):
     """Abstract base class for Network metrics. All implementations

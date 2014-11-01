@@ -1,8 +1,10 @@
 """Module providing classes for CPU metrics
     (Utilisation, Saturation, Errors)."""
-from abc import ABCMeta, abstractmethod
+
+from abc import ABCMeta, abstractproperty
 import time
-from usetool.sys_util import Metric, SystemUtilities
+from use.sys_util import Metric, SystemUtilities
+
 
 class CpuMetrics(object):
     """Abstract base class for CPU metrics. All implementations
@@ -14,20 +16,20 @@ class CpuMetrics(object):
         """Returns appropriate implementation of Metric"""
         return SystemUtilities.get_metric_obj(cls)
 
-    @abstractmethod
-    def get_cpu_util(self):
+    @abstractproperty
+    def utilization(self):
         """Abstract method. Should be implemented by subclasses
             to obtain CPU Utilisation metrics. """
         return NotImplemented
 
-    @abstractmethod
-    def get_cpu_satur(self):
+    @abstractproperty
+    def saturation(self):
         """Abstract method. Should be implemented by subclasses
             to obtain CPU Saturation metrics. """
         return NotImplemented
 
-    @abstractmethod
-    def get_cpu_errors(self):
+    @abstractproperty
+    def errors(self):
         """Abstract method. Should be implemented by subclasses
             to obtain CPU Errors metrics. """
         return NotImplemented
