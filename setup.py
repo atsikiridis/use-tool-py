@@ -1,7 +1,6 @@
 """The setup.py module of use-tool-py."""
 
 from distutils.core import setup
-import glob
 
 setup(name="use",
       version="0.1",
@@ -11,5 +10,5 @@ setup(name="use",
       author="Artem Tsikiridis",
       author_email="atsik@dmst.aueb.gr",
       packages=["use"],
-      requires=["psutil"]
+      install_requires=["psutil", "linux-metrics", "flask"]
       )

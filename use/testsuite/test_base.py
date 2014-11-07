@@ -1,6 +1,6 @@
-from use.base import Metrics
-
 import unittest
+
+from use.metrics.base import Metrics
 
 
 class TestBaseMetrics(unittest.TestCase):

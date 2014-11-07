@@ -1,10 +1,10 @@
 """Module containing classes for Storage IO-related Metrics."""
-
-from use.metrics.base import Metrics
+from abc import ABCMeta
 
 from linux_metrics import disk_busy
 
-from abc import ABCMeta
+from use.metrics.base import Metrics
+
 
 class StorageIOMetrics(Metrics):
     """Abstract base class for Storage IO  metrics. All implementations

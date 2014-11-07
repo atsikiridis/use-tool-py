@@ -1,9 +1,10 @@
 """Module containg metrics for Network Interfaces. """
 from collections import namedtuple
+from abc import ABCMeta, abstractproperty
 
 from use.metrics.base import Metrics
+
 from psutil import net_io_counters
-from abc import ABCMeta, abstractproperty
 
 
 class NetworkMetrics(Metrics):
