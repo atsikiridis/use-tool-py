@@ -1,6 +1,6 @@
 """Module containing classes for Storage IO-related Metrics."""
 
-from use.base import Metrics
+from use.metrics.base import Metrics
 
 from linux_metrics import disk_busy
 

@@ -1,7 +1,7 @@
 """ Module containing classes for Memory Capacity MEtrics."""
 from __future__ import division
 
-from use.base import Metrics
+from use.metrics.base import Metrics
 
 from psutil import virtual_memory
 from psutil import swap_memory

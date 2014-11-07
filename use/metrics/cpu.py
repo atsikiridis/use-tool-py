@@ -1,4 +1,4 @@
-from use.base import Metrics
+from use.metrics.base import Metrics
 
 from psutil import cpu_percent
 
