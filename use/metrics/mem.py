@@ -4,9 +4,10 @@ from __future__ import division
 from psutil import virtual_memory
 from psutil import swap_memory
 
-from use.metrics.base import Metrics
+from use.metrics import MemoryMetrics, metric
 
-class LinuxMemoryMetrics(Metrics):
+@metric('Linux')
+class LinuxMemoryMetrics(MemoryMetrics):
     """Memory metrics for Linux Systems are obtained here."""
 
     @property

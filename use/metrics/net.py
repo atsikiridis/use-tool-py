@@ -1,20 +1,12 @@
 """Module containg metrics for Network Interfaces. """
 from collections import namedtuple
-from abc import ABCMeta, abstractproperty
 
-from use.metrics.base import Metrics
+from use.metrics import NetworkMetrics, metric
 
 from psutil import net_io_counters
 
 
-class NetworkMetrics(Metrics):
-
-    __metaclass__ = ABCMeta
-
-    @abstractproperty
-    def utilization_per_nic(self):
-        return
-
+@metric('Linux')
 class LinuxNetworkMetrics(NetworkMetrics):
     """Network metrics for Linux Systems are obtained here."""
     _util_tuple = namedtuple('net_util', ['bytes_recv', 'bytes_sent'])

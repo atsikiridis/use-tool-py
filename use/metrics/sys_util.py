@@ -1,38 +1,6 @@
 """Module with utilities for system_awareness and reusable code."""
 
-import platform
 
-SYSMAP = {}  # A dictionary with global scope containing mappings.
-             # e.g: 'Windows': windows8, 'Linux': archlinuxclass
-
-class Metric(object):
-    """ A decorator class that allows a Metric class to be consistent with
-        the underlying platform (and the values of platform.system()).
-        Decorating a subclass of a metric will let the tool understand that
-        this class should be used for the specified system.
-
-        Example:
-
-        class SomeMetric(object):
-            ...
-
-        @Metric('FreeBSD')
-        class SomeFreeBsdMetric(SomeMetric):
-           ..."
-        A client should call the object transparently:
-
-        SomeMetric()"""
-
-    def __init__(self, system=None):
-        if system is None:
-            raise RuntimeError("""No platform specified.
-                                  Example decorator annotation is:
-                                  @Metric('Linux')""")
-        self.system = system
-
-    def __call__(self, cls):
-        SYSMAP[self.system] = cls
-        return cls
 
 class SystemUtilities(object):
     """Reusable functionality for the USE tool."""

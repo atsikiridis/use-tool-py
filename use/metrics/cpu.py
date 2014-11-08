@@ -1,20 +1,11 @@
-from abc import ABCMeta, abstractproperty
 from os import getloadavg
 
-from use.metrics.base import Metrics
+from use.metrics import CpuMetrics, metric
 
 from psutil import cpu_percent
 
 
-class CpuMetrics(Metrics):
-
-    __metaclass__ = ABCMeta
-
-    @abstractproperty
-    def utilization_per_core(self):
-        pass
-
-
+@metric('Linux')
 class LinuxCpuMetrics(CpuMetrics):
     """CPU metrics for Linux systems are obtained here."""
 
