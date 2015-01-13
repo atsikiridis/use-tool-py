@@ -24,3 +24,8 @@ class LinuxMemoryMetrics(MemoryMetrics):
         """Memory Errors, as output of dmesg err.
            TODO systemtap malloc probes."""
         raise NotImplementedError
+
+
+@metric('FreeBSD')
+class FreeBSDMemoryMetrics(LinuxMemoryMetrics):
+    pass

@@ -42,5 +42,10 @@ class LinuxNetworkMetrics(NetworkMetrics):
 
     @property
     def errors(self):
-        """Network errors for Linux. errors i guess?"""
+        """Network errors for Linux"""
         raise NotImplementedError
+
+
+@metric('FreeBSD')
+class FreeBSDNetworkMetrics(LinuxNetworkMetrics):
+    pass

@@ -14,7 +14,6 @@ class TestMetrics(unittest.TestCase):
     def test_metaclass(self):
         class SomeMetrics(Metrics):
             pass
-        print SomeMetrics()
 #        with self.assertRaises(TypeError):
 #            SomeMetrics()
 

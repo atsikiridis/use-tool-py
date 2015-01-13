@@ -15,6 +15,8 @@ class LinuxStorageMetrics(StorageIOMetrics):
     @property
     def utilization(self):  # per device
         return (disk_busy(ptn) for ptn in self._partitions)
+        # TODO This is working on FreeBSD. However, it shouldn't be assumed
+        # as linux-metrics is only documented to be working on Linux.
 
     @property
     def saturation(self):
@@ -31,3 +33,8 @@ class LinuxStorageMetrics(StorageIOMetrics):
     @property
     def errors(self):
         raise NotImplementedError
+
+
+@metric('FreeBSD')
+class FreeBSDStorageMetrics(LinuxStorageMetrics):
+    pass

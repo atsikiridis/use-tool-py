@@ -14,6 +14,7 @@ class metric(object):
     def __call__(self, *args, **kwargs):
         #print 'call', self, args, kwargs
         # TODO we need to get the first abstract class
+        # TODO it is a different object when called b different class...
         system_map[self._system] = args[0]
         return self
 

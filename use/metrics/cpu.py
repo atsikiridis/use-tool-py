@@ -31,3 +31,8 @@ class LinuxCpuMetrics(CpuMetrics):
     @property
     def errors(self):
         raise NotImplementedError
+
+
+@metric('FreeBSD')
+class FreeBSDCpuMetrics(LinuxCpuMetrics):
+    pass
