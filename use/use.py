@@ -1,6 +1,4 @@
-import argparse
 import platform
-
 from flask import Flask, render_template
 
 import metrics
@@ -16,9 +14,3 @@ def show_interface():
                                             'network': metrics.NetworkMetrics(),
                                             'storage_io': metrics.StorageIOMetrics()})
 
-if __name__ == '__main__':
-    parser = argparse.ArgumentParser()
-    parser.add_argument('--debug', action='store_true')
-    app.debug = parser.parse_args().debug
-
-    app.run()
