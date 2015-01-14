@@ -4,7 +4,12 @@ from __future__ import division
 from psutil import virtual_memory
 from psutil import swap_memory
 
-from use.metrics import MemoryMetrics, metric
+from base import Metrics, metric
+
+class MemoryMetrics(Metrics):
+    pass
+#MemoryMetrics = Metrics
+
 
 @metric('Linux')
 class LinuxMemoryMetrics(MemoryMetrics):
@@ -26,6 +31,6 @@ class LinuxMemoryMetrics(MemoryMetrics):
         raise NotImplementedError
 
 
-@metric('FreeBSD')
-class FreeBSDMemoryMetrics(LinuxMemoryMetrics):
-    pass
+#@metric('FreeBSD')
+#class FreeBSDMemoryMetrics(LinuxMemoryMetrics):
+#    pass

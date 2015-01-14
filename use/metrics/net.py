@@ -1,10 +1,17 @@
 """Module containg metrics for Network Interfaces. """
 from collections import namedtuple
+from abc import abstractproperty
 
-from use.metrics import NetworkMetrics, metric
+from base import Metrics, metric
 
 from psutil import net_io_counters
 
+
+class NetworkMetrics(Metrics):
+
+    @abstractproperty
+    def utilization_per_nic(self):
+        return
 
 @metric('Linux')
 class LinuxNetworkMetrics(NetworkMetrics):
@@ -46,6 +53,6 @@ class LinuxNetworkMetrics(NetworkMetrics):
         raise NotImplementedError
 
 
-@metric('FreeBSD')
-class FreeBSDNetworkMetrics(LinuxNetworkMetrics):
-    pass
+#@metric('FreeBSD')
+#class FreeBSDNetworkMetrics(LinuxNetworkMetrics):
+#    pass

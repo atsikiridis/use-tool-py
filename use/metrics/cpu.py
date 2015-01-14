@@ -1,8 +1,16 @@
 from os import getloadavg
+from abc import abstractproperty
 
-from use.metrics import CpuMetrics, metric
+from base import Metrics, metric
 
 from psutil import cpu_percent
+
+
+class CpuMetrics(Metrics):
+
+    @abstractproperty
+    def utilization_per_core(self):
+        pass
 
 
 @metric('Linux')
@@ -33,6 +41,6 @@ class LinuxCpuMetrics(CpuMetrics):
         raise NotImplementedError
 
 
-@metric('FreeBSD')
-class FreeBSDCpuMetrics(LinuxCpuMetrics):
-    pass
+#@metric('FreeBSD')
+#class FreeBSDCpuMetrics(LinuxCpuMetrics):
+#    pass

@@ -1,7 +1,11 @@
 """Module containing classes for Storage IO-related Metrics."""
 from linux_metrics import disk_busy
 
-from use.metrics import StorageIOMetrics, metric
+from base import Metrics, metric
+
+
+class StorageIOMetrics(Metrics):
+    pass
 
 @metric('Linux')
 class LinuxStorageMetrics(StorageIOMetrics):
@@ -35,6 +39,6 @@ class LinuxStorageMetrics(StorageIOMetrics):
         raise NotImplementedError
 
 
-@metric('FreeBSD')
-class FreeBSDStorageMetrics(LinuxStorageMetrics):
-    pass
+#@metric('FreeBSD')
+#class FreeBSDStorageMetrics(LinuxStorageMetrics):
+#    pass
